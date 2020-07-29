@@ -122,24 +122,21 @@ body {
     padding-top: 32px;
     padding-bottom: 32px;
 }
-.navigation-list-link::after {
+.current::after {
     content: "";
     display: block;
     position: absolute;
+    
     left: 0;
     bottom: 0;
     width: 100%;
     height: 4px;
     border-radius: 2px;
     background-color: var(--accent-color);
-
-    opacity: 0;
-    transition: opasity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
 }
-
-.navigation-list-link:hover::after, 
-.navigation-list-link:focus::after,
+.current {
+    color: var(--accent-color);
+}
 .navigation-list-link:hover, 
 .navigation-list-link:focus,
 .header-mail-link:hover,
@@ -148,7 +145,7 @@ body {
 .header-tel-link:focus
 {
     color: var(--accent-color);
-    opacity: 1;
+    transition: opasity 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .header-mail-link,
 .header-tel-link {
@@ -216,6 +213,7 @@ color: var(--title-dark-theme-color);
     padding-left: 32px;
     cursor: pointer;
 }
+
 /* Преимущества секция */
 .advantages-list-item::before {
     content: "";
@@ -273,18 +271,36 @@ color: var(--title-dark-theme-color);
 }
 /* Услуги секция */
 .services-subtitle {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    width: 100%;
+}
+.services-img {
+    display: block;
+} 
+.services-subtitle {
     text-align: center;
-    background-color: #757575;
+    background-color: rgba(47, 48, 58, 0.8);
+    padding-top: 27px;
+    padding-bottom: 27px;
+    color: var(--title-dark-theme-color);
 }
 .services-list {
     display: flex;
 }
+
+.services-list-item {
+    position: relative;
+}
+
 .services-list-item:not(:last-child) {
     margin-right: 30px;
 }
 
 .services-subtitle{
-    color: var(--title-dark-theme-color);
+   
 }
 /* Команда секция */
 .team {
@@ -343,10 +359,13 @@ color: var(--title-dark-theme-color);
     color: #AFB1B8;
     justify-content: center;
     align-items: center;
+
+    transition-property: color;
 }
 .social-list-item-link:hover{
     background-color: var(--accent-color);
     color: #FFFFFF;
+    transition-property: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 .social-list-item-link-svg {
     fill: currentcolor;
@@ -377,12 +396,11 @@ color: var(--title-dark-theme-color);
  .our-client-list-item-link-svg {
     fill: currentColor;
 }
-.our-client-list-item-link-svg:hover{
-    
-}
 .our-client-list-item-link:hover {
     border-color: var(--accent-color);
     color: var(--accent-color);
+
+    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Футер */
@@ -442,6 +460,8 @@ color: var(--title-dark-theme-color);
     justify-content: center;
     align-items: center; 
 
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
 }
 .subscribe-list-item:not(:last-child) {
     margin-right: 10px;
@@ -492,7 +512,7 @@ color: var(--title-dark-theme-color);
     border: 1px solid #EEEEEE;
     box-sizing: border-box;
 }
-.portfolio-list-item:hover {  
+.portfolio-card:hover {  
     box-shadow: 1px 4px 6px rgba(0, 0, 0, 0.16), 0px 4px 4px rgba(0, 0, 0, 0.06), 0px 1px 1px rgba(0, 0, 0, 0.12);
 }
 .radio-btn {
@@ -510,7 +530,41 @@ color: var(--title-dark-theme-color);
     color: var(--title-dark-theme-color);
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.12), 0px 1px 2px rgba(0, 0, 0, 0.08), 0px 3px 1px rgba(0, 0, 0, 0.1);
 }
+.portfolio-list-item-img {
+    display: block;
+}
+.portfolio-list-img-wrapper {
+    position: relative;
+    overflow: hidden;
+}
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(33, 150, 243, 0.9);
+    width: 100%;
+    height: 100%;
+    transform: translateY(100%);
 
+    transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+   
+}
+.overlay-discription {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5;
+    letter-spacing: 0.03em;
+    color: #FFFFFF;
+    padding-top: 63px;
+    padding-right: 24px;
+    padding-bottom: 63px;
+    padding-left: 24px;
+
+}
+.portfolio-list-item:hover .overlay {
+    transform: translateY(0%);
+}
 .portfolio-list-item-title{
     font-weight: 700;
     font-size: 18px;
